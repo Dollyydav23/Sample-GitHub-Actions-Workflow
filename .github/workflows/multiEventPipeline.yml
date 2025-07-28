@@ -8,6 +8,8 @@ on:
     pull_request: # Event: Whenever a pull resquest is made to the repository
             branches:
                 - main
+            types:
+                - closed
     workflow_dispatch: 
 
 jobs: 
@@ -24,6 +26,13 @@ jobs:
         steps: # Steps to be executed int the job
             - name: "Runing on main/test push" # step 1
               run: echo "Runing on main/test push"
+
+    on-pull-request-closed:
+        if: github.event_name == 'pull request' && github.event.action == 'closed'
+        runs-on: ubuntu-latest
+        steps:
+            - name: "Runing on pull request closed"
+              run: echo "Runing on pull request closed"
 
     on-workflow-dispatch: #job 3
         if: github.event_name == 'workflow-dispatch'
