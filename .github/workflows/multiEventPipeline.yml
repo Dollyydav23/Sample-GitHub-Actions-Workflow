@@ -10,13 +10,15 @@ on:
                 - main
 
 jobs: 
-    on-push: # Name of job
+    on-push: # Name of job, job 1
+        if: github.event_name == 'push'
         runs-on: ubuntu-latest # Define the environmnet of runner on which job runs
         steps: # Steps to be executed int the job
             - name: "Runing on main push" # step 1
               run: echo "Runing on main push"
     
-    on-pull-request: # New job
+    on-pull-request: # New job ,job 2
+        if: github.event_name == 'pull_request'
         runs-on: ubuntu-latest # Define the environmnet of runner on which job runs
         steps: # Steps to be executed int the job
             - name: "Runing on main push" # step 1
